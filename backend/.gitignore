@@ -1,0 +1,5 @@
+node_modules
+dist
+.env
+# dist/ (ir a package.json y en el script añadir "start": "node ./dist/app.js" debajo del build.)
+# (el dist/ sirve para compilar el codigo TypeScript a JavaScript y guardandolo en la carpeta dist/ para poder desplegarlo en producción.)
