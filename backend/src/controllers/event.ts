@@ -56,7 +56,7 @@ const deleteEvent = async (req: Request, res: Response) => {
     const { id } = req.params;
     const resp = await deletEvent(id);
     const data = resp ? resp : "EVENT_NOT_FOUND";
-    res.send(resp);
+    res.send(data);
   } catch (error) {
     handleHttp(res, "ERROR_DELETE_EVENT");
   }
