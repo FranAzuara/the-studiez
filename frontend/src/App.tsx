@@ -1,3 +1,4 @@
+import EventCarousel from "./components/eventCarousel";
 import Navbar from "./components/navbar";
 
 function App() {
@@ -6,23 +7,37 @@ function App() {
       <Navbar />
       <div className="box-content p-4">
         <div className="justify-center items-center w-full p-70">
-          <h1>THE STUDIEZ</h1>
-          <p>
-            Descubre tu pasión por el baile. Clases profesionales para todos los
-            niveles en un ambiente inspirador y lleno de energia.
-          </p>
+          <h1 className="p-4">THE STUDIEZ</h1>
+          <p>Bienvenid@s a THE STUDIEZ, vuestro refugio creativo</p>
         </div>
-        <div>
+        <div className="bg-white rounded-lg shadow-lg p-4">
           <h2 className="text-6xl p-4">Sobre Nosotros</h2>
-          <div className="flex grid grid-cols-2 gap-4 p-4">
+          <div className="flex grid grid-cols-2 gap-10 p-4">
             <div>
-              <p className="flex justify-start text-4xl pb-4">Nuestra Misión</p>
-              <p className="text-justify">
-                En THE STUDIEZ, ofrecemos clases de baile para todos los
-                niveles, desde principiantes hasta avanzados. Nuestro equipo de
-                instructores profesionales está aquí para guiarte en tu viaje de
-                baile.
+              <p className="flex justify-start text-4xl pb-4">
+                Nuestro Espacio
               </p>
+              <div className="text-justify">
+                <p>
+                  Nuestra sala de 100m² es el lienzo en blanco perfecto para dar
+                  vida a cualquier proyecto.
+                </p>
+                <br />
+                <p>
+                  Paredes blancas, suelo de parquet, iluminación LED ajustable y
+                  todo lo que necesitas para crear la atmósfera ideal.
+                </p>
+                <br />
+                <p>
+                  ¿Necesitas material extra? Contamos con focos de grabación y
+                  maquina de humo para llevar tus sesiones al siguiente nivel.
+                </p>
+                <br />
+                <p>
+                  Bailar, grabar, ensayar, fotografiar... ¡las posibilidades son
+                  infinitas, tu decides!
+                </p>
+              </div>
             </div>
             <div>
               <img
@@ -35,30 +50,31 @@ function App() {
           <div>
             <p className="text-4xl">Nuestros Valores</p>
             <div className="flex grid grid-cols-3 gap-4 p-4">
-              <div>
+              <div className="bg-white rounded-lg shadow-lg p-4">
                 <strong>Excelencia</strong>
                 <p>
                   Buscamos la excelencia en cada clase, con profesores
                   certificados y metodologías probadas.
                 </p>
               </div>
-              <div>
+              <div className="bg-white rounded-lg shadow-lg p-4">
                 <strong>Comunidad</strong>
                 <p>
                   Fomentamos un ambiente inclusivo donde todos se sienten
                   bienvenidos y valorados.
                 </p>
               </div>
-              <div>
+              <div className="bg-white rounded-lg shadow-lg p-4">
                 <strong>Crecimiento</strong>
                 <p>
                   Acompañamos el crecimiento personal y artístico de cada
-                  estudiante.
+                  alumno.
                 </p>
               </div>
             </div>
           </div>
         </div>
+        <EventCarousel />
       </div>
     </>
   );
