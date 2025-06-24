@@ -17,6 +17,11 @@
 
 a {
   font-weight: 500;
+  color: #000000;
+  text-decoration: inherit;
+}
+a.a-navbar {
+  font-weight: 500;
   color: #ffffff;
   text-decoration: inherit;
 }
@@ -29,6 +34,10 @@ body {
   min-width: 100vw;
   min-height: 100vh;
   text-align: center;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 h1 {
@@ -48,7 +57,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #35b22f;
 }
 button:focus,
 button:focus-visible {
