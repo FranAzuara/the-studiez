@@ -29,16 +29,27 @@ const EventCarousel: React.FC<Props> = ({ onAdd, onEdit, onDelete }) => {
 
   return (
     <div className="py-4 w-full">
-      <div className="flex justify-center items-center mb-4">
-        <h2 className="text-4xl font-bold">Eventos</h2>
-        {isLoggedIn && (
-          <button
-            onClick={onAdd}
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-          >
-            + Añadir evento
-          </button>
-        )}
+      <div className="grid grid-cols-3 items-center mb-4">
+        {/* Columna izquierda vacía */}
+        <div />
+
+        {/* Columna central con título */}
+        <div className="text-center">
+          <h2 className="text-4xl font-bold">Eventos</h2>
+        </div>
+
+        {/* Columna derecha con botón añadir */}
+        <div className="flex justify-end">
+          {isLoggedIn && (
+            <button
+              onClick={onAdd}
+              className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 flex items-center"
+            >
+              <i className="fas fa-square-plus mr-2"></i>
+              Añadir evento
+            </button>
+          )}
+        </div>
       </div>
 
       <Swiper
@@ -56,9 +67,9 @@ const EventCarousel: React.FC<Props> = ({ onAdd, onEdit, onDelete }) => {
       >
         {events.map((event) => (
           <SwiperSlide key={event._id}>
-            <div className="bg-white rounded-xl shadow-md p-4 relative">
+            <div className="bg-white rounded-xl shadow-md p-4 relative border-1 border-black-300 rounded-lg shadow-lg">
               {/* Aquí puedes renderizar la imagen si tienes una url */}
-              <div className="mt-2">
+              <div className="bg-green-500/20 p-4 rounded">
                 <span className="text-green-600 text-sm font-semibold">
                   {event.date}
                 </span>
@@ -77,14 +88,14 @@ const EventCarousel: React.FC<Props> = ({ onAdd, onEdit, onDelete }) => {
                     className="text-yellow-600 hover:text-yellow-800"
                     aria-label="Editar evento"
                   >
-                    ✎
+                    <i className="fas fa-pen-to-square"></i>
                   </button>
                   <button
                     onClick={() => onDelete(event._id)}
                     className="text-red-600 hover:text-red-800"
                     aria-label="Eliminar evento"
                   >
-                    🗑
+                    <i className="fas fa-trash-can"></i>
                   </button>
                 </div>
               )}
