@@ -6,6 +6,8 @@ import EventCarousel from "./components/eventCarousel";
 import EditEventModal from "./components/editEventModal";
 import Footer from "./components/footer";
 import { type EventType } from "./types/events";
+import GaleryCarousel from "./components/galerycarousel";
+import { motion } from "framer-motion";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
@@ -95,15 +97,32 @@ function App() {
         </section>
 
         {/* Sobre Nosotros */}
-        <section
+        <motion.section
           id="nosotros"
           className="bg-white rounded-lg shadow-lg pb-4 scroll-mt-20 mx-4 md:mx-auto"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <h2 className="text-3xl md:text-6xl p-4 text-center font-bold">
-            Sobre Nosotros
-          </h2>
+          <motion.h2
+            id="nosotros"
+            className="text-3xl md:text-6xl p-4 text-center font-bold"
+            initial={{ opacity: 0, x: -100 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <h2>Sobre Nosotros</h2>
+          </motion.h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
-            <div>
+            {/* Nuestro Espacio */}
+            <motion.div
+              initial={{ opacity: 0, x: -100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
+            >
               <p className="text-2xl md:text-4xl pb-4">Nuestro Espacio</p>
               <div className="text-justify text-base md:text-lg leading-relaxed">
                 <p>
@@ -123,16 +142,28 @@ function App() {
                   infinitas, tú decides!
                 </p>
               </div>
-            </div>
-            <div className="flex items-center justify-center">
-              <img
-                src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=60"
-                alt="Sala de baile"
-                className="w-full h-auto max-h-[400px] object-cover rounded-lg shadow-lg"
-              />
-            </div>
+            </motion.div>
+
+            {/* GaleryCarousel */}
+            <motion.div
+              className="flex items-center justify-center"
+              initial={{ opacity: 0, x: 100 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            >
+              <GaleryCarousel />
+            </motion.div>
           </div>
-          <div className="p-4">
+
+          {/* Nuestros Valores */}
+          <motion.div
+            className="p-4"
+            initial={{ opacity: 0, y: 100 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+          >
             <p className="text-4xl text-center">Nuestros Valores</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
               <div className="bg-white rounded-lg drop-shadow-lg p-4">
@@ -157,8 +188,8 @@ function App() {
                 </p>
               </div>
             </div>
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
         {/* Eventos */}
         <section id="eventos" className="p-4 scroll-mt-20">
@@ -209,7 +240,7 @@ function App() {
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
-                <path d="M7.75 2h8.5A5.75 5.75 ..." />
+                <path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5Zm4.25 3a5.75 5.75 0 1 1 0 11.5a5.75 5.75 0 0 1 0-11.5Zm0 1.5a4.25 4.25 0 1 0 0 8.5a4.25 4.25 0 0 0 0-8.5Zm5.25-.25a.75.75 0 1 1 0 1.5a.75.75 0 0 1 0-1.5Z" />
               </svg>
               <a
                 href="https://www.instagram.com/the.studiez"
