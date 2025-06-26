@@ -1,7 +1,10 @@
+/* Importar Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Raleway:wght@700;900&display=swap");
 @import "tailwindcss";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-body: "Lato", sans-serif;
+  --font-heading: "Raleway", sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
@@ -30,6 +33,7 @@ a:hover {
 }
 
 body {
+  font-family: var(--font-body);
   margin: 0;
   min-width: 100vw;
   min-height: 100vh;
@@ -38,6 +42,17 @@ body {
 
 html {
   scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+  font-weight: 700;
 }
 
 h1 {
