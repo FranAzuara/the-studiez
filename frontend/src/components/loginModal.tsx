@@ -1,11 +1,14 @@
+// LoginModal.tsx
 import { useState } from "react";
+import axios, { AxiosError } from "axios";
 
 interface LoginModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onLoginSuccess: () => void;
 }
 
-const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
+const LoginModal = ({ isOpen, onClose, onLoginSuccess }: LoginModalProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -19,27 +22,24 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:3001/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
+      const response = await axios.post(
+        "http://localhost:3001/api/auth/login",
+        { email, password },
+        { headers: { "Content-Type": "application/json" } }
+      );
 
-      const data = await response.json();
+      const data = response.data;
+      localStorage.setItem("token", data.token);
+      onLoginSuccess();
+      onClose();
+    } catch (err) {
+      const error = err as AxiosError<{ message?: string }>;
 
-      if (!response.ok) {
-        setError(data.message || "Credenciales inválidas");
+      if (error.response?.data?.message) {
+        setError(error.response.data.message);
       } else {
-        localStorage.setItem("token", data.token);
-        alert("Inicio de sesión exitoso");
-        onClose();
-        setEmail("");
-        setPassword("");
+        setError("Error de conexión con el servidor");
       }
-    } catch {
-      setError("Error de conexión con el servidor");
     } finally {
       setLoading(false);
     }
@@ -56,7 +56,7 @@ const LoginModal = ({ isOpen, onClose }: LoginModalProps) => {
           ✕
         </button>
         <h2 className="text-xl font-bold mb-4 text-center">Iniciar Sesión</h2>
-        <form className="flex flex-col gap-4" onSubmit={handleLogin}>
+        <form onSubmit={handleLogin} className="flex flex-col gap-4">
           <input
             type="email"
             placeholder="Correo electrónico"

@@ -79,6 +79,23 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
+/* Estilos para flechas gallerycarousel Swiper */
+.swiper-button-prev,
+.swiper-button-next {
+  color: #000000 !important;
+}
+
+/* Estilos para paginacion gallerycarousel Swiper */
+.swiper-pagination-bullet {
+  background: #000000 !important;
+  opacity: 1 !important;
+}
+
+/* Estilos para paginacion gallerycarousel Swiper */
+.mySwiper .swiper-pagination-bullet-active {
+  background: #35b22f !important;
+}
+
 @media (prefers-color-scheme: light) {
   :root {
     color: #213547;

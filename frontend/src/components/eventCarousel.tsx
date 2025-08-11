@@ -18,7 +18,7 @@ const EventCarousel: React.FC<Props> = ({ onAdd, onEdit, onDelete }) => {
   useEffect(() => {
     // 1) Cargar eventos
     axios
-      .get<EventType[]>("http://localhost:3001/event")
+      .get<EventType[]>("http://localhost:3001/api/event")
       .then((res) => setEvents(res.data))
       .catch((err) => console.error("Error al cargar eventos:", err));
 

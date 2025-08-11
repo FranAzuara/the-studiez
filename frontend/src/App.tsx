@@ -1,12 +1,14 @@
 // src/App.tsx
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Navbar from "./components/navbar";
 import EventCarousel from "./components/eventCarousel";
 import EditEventModal from "./components/editEventModal";
 import Footer from "./components/footer";
 import { type EventType } from "./types/events";
 import GaleryCarousel from "./components/galerycarousel";
+import WeekCalendar from "./components/weekCalendar";
+import LoginModal from "./components/loginModal";
 import { motion } from "framer-motion";
 
 function App() {
@@ -14,6 +16,22 @@ function App() {
   const [currentEvent, setCurrentEvent] = useState<EventType | undefined>(
     undefined
   );
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsLoggedIn(!!token);
+  }, []);
+
+  const handleLoginSuccess = () => {
+    setIsLoggedIn(true);
+    setModalOpen(false);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+  };
 
   // Abrir modal para crear nuevo evento
   const handleAdd = () => {
@@ -50,7 +68,7 @@ function App() {
     try {
       if (evt._id) {
         // Actualizar
-        await fetch(`http://localhost:3001/event/${evt._id}`, {
+        await fetch(`http://localhost:3001/api/event/${evt._id}`, {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
@@ -60,7 +78,7 @@ function App() {
         });
       } else {
         // Crear nuevo
-        await fetch("http://localhost:3001/event", {
+        await fetch("http://localhost:3001/api/event", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -75,9 +93,11 @@ function App() {
     }
   };
 
-  // Para tu sección contacto
-  const subject = encodeURIComponent("Evento");
-  const body = encodeURIComponent("Hola, me gustaría organizar un evento...");
+  // Para la sección contacto
+  const subject = encodeURIComponent("Reserva de espacio THE STUDIEZ");
+  const body = encodeURIComponent(
+    "Hola nuenos dias, me gustaría reservar su refugio el [DIA] de [HORARIO]..."
+  );
   const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=the.studiez.bcn@gmail.com&su=${subject}&body=${body}`;
 
   return (
@@ -200,6 +220,21 @@ function App() {
           />
         </section>
 
+        {/* Disponibilidad Semanal */}
+        <section id="Calendario" className="p-4 mx-4 md:mx-auto scroll-mt-20">
+          <h2 className="text-4xl p-4 text-center font-bold">
+            Disponibilidad Semanal
+          </h2>
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+          >
+            <WeekCalendar isLoggedIn={isLoggedIn} />
+          </motion.div>
+        </section>
+
         {/* Contacto */}
         <section
           id="contacto"
@@ -232,7 +267,7 @@ function App() {
             </div>
             <div className="flex items-center gap-2">
               <span>🕒</span>
-              <p>Lunes a Sábado: 10:00 – 21:00</p>
+              <p>Lunes a Domingo: 8:00h – 22:00h</p>
             </div>
             <div className="flex items-center gap-2">
               <svg
@@ -263,7 +298,16 @@ function App() {
         onSave={handleSave}
       />
 
-      <Footer />
+      <Footer
+        isLoggedIn={isLoggedIn}
+        onLoginClick={() => setModalOpen(true)}
+        onLogout={handleLogout}
+      />
+      <LoginModal
+        isOpen={modalOpen}
+        onClose={() => setModalOpen(false)}
+        onLoginSuccess={handleLoginSuccess}
+      />
     </>
   );
 }

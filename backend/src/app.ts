@@ -8,7 +8,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
-app.use(router);
+app.use("/api", router);
 db().then(() => console.log("Conectado a la base de datos"));
 app.listen(PORT, () => {
   console.log(`Listo por el port ${PORT}`);
