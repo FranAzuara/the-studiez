@@ -18,7 +18,7 @@ const GaleryCarousel: React.FC = () => {
           clickable: true,
         }}
         modules={[EffectFade, Navigation, Pagination]}
-        className="mySwiper border-2 border-gray-300 rounded-lg drop-shadow-lg h-96"
+        className="mySwiper border-2 border-gray-300 rounded-lg drop-shadow-lg h-110"
       >
         <SwiperSlide>
           <img src="https://swiperjs.com/demos/images/nature-1.jpg" />

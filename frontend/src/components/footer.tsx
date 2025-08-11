@@ -15,7 +15,7 @@ const Footer = ({ isLoggedIn, onLoginClick, onLogout }: FooterProps) => {
           onClick={onLoginClick}
         />
         <p className="text-sm md:text-base italic text-center md:w-full md:text-center mb-4 md:mb-0">
-          ¿Listo para crear algo único? Contáctanos y reserva tu espacio.
+          ¿List@ para crear algo único? Contáctanos y reserva tu espacio.
         </p>
         <p className="text-sm text-center md:text-right">
           the.studiez.bcn@gmail.com

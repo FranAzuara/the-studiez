@@ -13,8 +13,8 @@ const Navbar = () => {
           <a className="a-navbar" href="#nosotros">
             Nosotros
           </a>
-          <a className="a-navbar" href="#eventos">
-            Eventos
+          <a className="a-navbar" href="#disponibilidad">
+            Disponibilidad
           </a>
           <a className="a-navbar" href="#contacto">
             Contacto
