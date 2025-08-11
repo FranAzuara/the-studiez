@@ -104,13 +104,19 @@ function App() {
     <>
       <Navbar />
 
-      <div className="box-content p-4">
+      <div className="box-content p-2 max-w-screen overflow-x-hidden">
         {/* Inicio */}
         <section
           id="inicio"
           className="flex flex-col justify-center items-center w-full h-screen text-center"
         >
-          <h1 className="text-6xl font-bold mb-4">THE STUDIEZ</h1>
+          <h1 className="text-6xl font-bold mb-4">
+            <img
+              src="/logostudiez.png"
+              alt="THE STUDIEZ"
+              className="h-33 md:h-50 object-contain max-w-full"
+            />
+          </h1>
           <p className="text-xl">
             Bienvenid@s a THE STUDIEZ, vuestro refugio creativo
           </p>
@@ -119,7 +125,7 @@ function App() {
         {/* Sobre Nosotros */}
         <motion.section
           id="nosotros"
-          className="bg-white rounded-lg shadow-lg pb-4 scroll-mt-20 mx-4 md:mx-auto"
+          className="bg-white rounded-lg shadow-lg pb-4 scroll-mt-20 mx-4 md:mx-auto bg-[url('/degradadoverde.jpg')] bg-cover bg-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -135,7 +141,17 @@ function App() {
           >
             <h2>Sobre Nosotros</h2>
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+          <div className="grid grid-cols-2">
+            {/* Columna 1 */}
+            <div className="flex flex-col items-start justify-center lg:items-center ms-4">
+              <h3 className="text-2xl md:text-4xl pb-1">Nuestro Refugio</h3>
+              <p className="mt-0">Un espacio para moverte, crear y brillar.</p>
+            </div>
+
+            {/* Columna 2 vacía */}
+            <div></div>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 p-4">
             {/* Nuestro Espacio */}
             <motion.div
               initial={{ opacity: 0, x: -100 }}
@@ -143,23 +159,41 @@ function App() {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}
             >
-              <p className="text-2xl md:text-4xl pb-4">Nuestro Espacio</p>
               <div className="text-justify text-base md:text-lg leading-relaxed">
-                <p>
-                  Nuestra sala de 100m² es el lienzo en blanco perfecto para dar
-                  vida a cualquier proyecto.
+                <p className="mt-4">
+                  Nuestra sala, con sus <strong>100 m²</strong> de amplitud, es
+                  mucho más que cuatro paredes: es un escenario en blanco listo
+                  para transformarse en lo que sueñes.
                 </p>
-                <p>
-                  Paredes blancas, suelo de parquet, iluminación LED ajustable y
-                  todo lo que necesitas para crear la atmósfera ideal.
+                <p className="mt-3">
+                  Las paredes blancas reflejan la luz y la energía; el{" "}
+                  <strong>suelo de parquet</strong> acoge cada paso con calidez;
+                  la <strong>iluminación LED</strong> ajustable dibuja la
+                  atmósfera perfecta, ya sea íntima o vibrante.
                 </p>
-                <p>
-                  ¿Necesitas material extra? Contamos con focos de grabación y
-                  máquina de humo para llevar tus sesiones al siguiente nivel.
+                <p className="mt-3">
+                  La <strong>música</strong> cobra vida gracias a un equipo
+                  profesional con cuatro <strong>altavoces</strong> y un{" "}
+                  <strong>subwoofer</strong> que llenan la sala de{" "}
+                  <strong>sonido envolvente.</strong> A tu disposición también
+                  tienes <strong>focos de grabación</strong> que realzan cada
+                  movimiento y una <strong>máquina de humo</strong> que añade
+                  ese toque de magia a tus sesiones.
                 </p>
-                <p>
-                  Bailar, grabar, ensayar, fotografiar... ¡las posibilidades son
-                  infinitas, tú decides!
+                <p className="mt-3">
+                  Para que disfrutes sin importar la temporada, la sala está
+                  equipada con <strong>aire acondicionado</strong>, ideal para
+                  mantener la frescura en los días de calor intenso.
+                </p>
+                <p className="mt-3">
+                  Además, contamos con dos <strong>baños</strong> y una práctica{" "}
+                  <strong>zona de almacenaje</strong>, perfecta para dejar
+                  chaquetas, mochilas o lo que necesites.
+                </p>
+                <p className="mt-3">
+                  Bailar, grabar, ensayar, fotografiar… aquí{" "}
+                  <strong>no hay límites</strong>. Este es tu lienzo, y{" "}
+                  <strong>tú decides</strong> la obra que vas a crear.
                 </p>
               </div>
             </motion.div>
@@ -184,27 +218,28 @@ function App() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
           >
-            <p className="text-4xl text-center">Nuestros Valores</p>
+            <p className="text-4xl text-center">Qué nos define</p>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4">
               <div className="bg-white rounded-lg drop-shadow-lg p-4">
-                <strong>Excelencia</strong>
+                <strong>Calidad profesional</strong>
                 <p>
-                  Buscamos la excelencia en cada clase, con profesores
-                  certificados y metodologías probadas.
+                  Un espacio cuidado al detalle, equipado con materiales y
+                  tecnología que garantizan el mejor resultado para tus clases,
+                  ensayos o producciones.
                 </p>
               </div>
               <div className="bg-white rounded-lg drop-shadow-lg p-4">
-                <strong>Comunidad</strong>
+                <strong>Ambiente acogedor</strong>
                 <p>
-                  Fomentamos un ambiente inclusivo donde todos se sienten
-                  bienvenidos y valorados.
+                  Un lugar pensado para que cualquiera que cruce la puerta se
+                  sienta cómodo, inspirado y con ganas de crear.
                 </p>
               </div>
               <div className="bg-white rounded-lg drop-shadow-lg p-4">
-                <strong>Crecimiento</strong>
+                <strong>Impulso creativo</strong>
                 <p>
-                  Acompañamos el crecimiento personal y artístico de cada
-                  alumno.
+                  Facilitamos que cada proyecto crezca, aportando recursos y
+                  flexibilidad para adaptarnos a tus necesidades.
                 </p>
               </div>
             </div>
@@ -221,7 +256,10 @@ function App() {
         </section>
 
         {/* Disponibilidad Semanal */}
-        <section id="Calendario" className="p-4 mx-4 md:mx-auto scroll-mt-20">
+        <section
+          id="disponibilidad"
+          className="p-4 mx-4 md:mx-auto scroll-mt-20"
+        >
           <h2 className="text-4xl p-4 text-center font-bold">
             Disponibilidad Semanal
           </h2>
@@ -240,20 +278,28 @@ function App() {
           id="contacto"
           className="bg-white rounded-lg shadow-lg p-4 mx-4 md:mx-auto scroll-mt-20"
         >
-          <h3 className="text-4xl p-4 text-center font-bold">Contacto</h3>
+          <h3 className="text-4xl p-4 text-center font-bold">
+            Reserva tu momento en la pista
+          </h3>
           <div className="flex flex-col items-center gap-4">
-            <div className="bg-white rounded-lg drop-shadow-lg p-4 w-1/2 text-center">
-              <strong>¿Quieres organizar tu propio evento?</strong>
-              <p>
-                Nuestras instalaciones están disponibles para eventos privados,
-                celebraciones y talleres especiales.
+            <div className="bg-white rounded-lg drop-shadow-lg p-4 w-full md:w-2/3 text-center">
+              <strong>
+                ¿Buscas el lugar perfecto para dar tus clases de baile, ensayar
+                con tu grupo o preparar una coreografía?
+              </strong>
+              <p className="mt-2">
+                Nuestra sala está lista para recibirte con todo lo que
+                necesitas: amplitud, luz y la energía perfecta para moverte.
               </p>
+              <p>Elige la fecha, reserva tu hora y empieza a hacerla tuya. </p>
               <a href={gmailUrl} target="_blank" rel="noopener noreferrer">
                 <button className="bg-green-500 text-white px-4 py-2 rounded-lg mt-2">
                   Contáctanos
                 </button>
               </a>
             </div>
+          </div>
+          <div className="flex justify-around items-center mt-4 max-w-4xl mx-auto w-full px-4 gap-3">
             <div className="flex items-center gap-2">
               <span>📍</span>
               <a
