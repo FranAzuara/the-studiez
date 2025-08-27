@@ -83,12 +83,12 @@ const WeekCalendar = ({ isLoggedIn }: WeekCalendarProps) => {
     <div className="p-4 overflow-x-auto">
       <div className="min-w-max">
         {isLoggedIn && (
-          <h2 className="text-xl font-bold mb-4">
+          <h2 className="text-xl text-white font-bold mb-4">
             Editar disponibilidad semanal
           </h2>
         )}
         <div className="flex justify-center overflow-x-auto p-4">
-          <table className="table-fixed border-collapse border border-gray-300 bg-white rounded-xl shadow-lg overflow-hidden">
+          <table className="table-fixed border-collapse bg-white/95 border border-gray-300 bg-white rounded-xl shadow-lg overflow-hidden">
             <thead>
               <tr>
                 <th className="border p-2 w-24">Hora</th>
