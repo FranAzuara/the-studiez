@@ -106,20 +106,56 @@ function App() {
 
       <div className="box-content p-2 max-w-screen overflow-x-hidden">
         {/* Inicio */}
-        <section
-          id="inicio"
-          className="flex flex-col justify-center items-center w-full h-screen text-center"
-        >
-          <h1 className="text-6xl font-bold mb-4">
-            <img
-              src="/logostudiez.png"
-              alt="THE STUDIEZ"
-              className="h-33 md:h-50 object-contain max-w-full"
-            />
-          </h1>
-          <p className="text-xl">
-            Bienvenid@s a THE STUDIEZ, vuestro refugio creativo
-          </p>
+        <section id="inicio" className="relative w-full overflow-hidden">
+          {/* Grid de videos */}
+          <div className="grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 w-full">
+            {/* Video 1 */}
+            <div className="w-full h-180 lg:h-200">
+              <video
+                className="w-full h-full object-cover object-bottom"
+                src="/video-studiez-1.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+              ></video>
+            </div>
+
+            {/* Video 2 */}
+            <div className="w-full h-180 lg:h-200">
+              <video
+                className="w-full h-full object-cover object-bottom"
+                src="/video-studiez-2.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+              ></video>
+            </div>
+
+            {/* Video 3 */}
+            <div className="w-full h-180 lg:h-200 md:col-span-2 md:w-2/3 md:mx-auto lg:col-span-1 lg:w-full lg:mx-0">
+              <video
+                className="w-full h-full object-cover object-bottom"
+                src="/video-studiez-3.mp4"
+                autoPlay
+                loop
+                muted
+                playsInline
+              ></video>
+            </div>
+          </div>
+
+          {/* Contenido arriba a la derecha, separado del Navbar */}
+          <div className="absolute top-12 right-10 text-right z-10">
+            <h1 className="text-6xl font-bold mb-4">
+              <img
+                src="/h1studiez.png"
+                alt="THE STUDIEZ"
+                className="h-28 object-contain max-w-full"
+              />
+            </h1>
+          </div>
         </section>
 
         <Prueba />
