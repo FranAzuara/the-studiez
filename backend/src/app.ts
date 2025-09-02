@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import "dotenv/config";
 import router from "./routes/index.js";
-import db from "./config/mongo.js";
+import dbConnect from "./config/mongo.js";
 import serverless from "serverless-http";
 
 const app = express();
@@ -15,7 +15,7 @@ app.use("/api", router);
 // Conexión a MongoDB con try/catch
 (async () => {
   try {
-    await db();
+    await dbConnect();
     console.log("Conectado a la base de datos");
   } catch (err) {
     console.error("Error al conectar a MongoDB:", err);
@@ -23,5 +23,4 @@ app.use("/api", router);
 })();
 
 // Exporta el handler para Vercel serverless
-const handler = serverless(app);
-export default handler;
+export const handler = serverless(app);

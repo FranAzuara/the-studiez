@@ -3,7 +3,13 @@ import { connect } from "mongoose";
 
 async function dbConnect(): Promise<void> {
   const DB_URI = <string>process.env.DB_URI;
-  await connect(DB_URI);
+  try {
+    await connect(DB_URI);
+    console.log("Conectado a MongoDB Atlas");
+  } catch (err) {
+    console.error("Error al conectar a MongoDB:", err);
+    throw err; // Para que Vercel detecte que algo falló
+  }
 }
 
 export default dbConnect;
