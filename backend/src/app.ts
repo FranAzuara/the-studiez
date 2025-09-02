@@ -6,10 +6,21 @@ import db from "./config/mongo";
 import serverless from "serverless-http";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+
+// Middlewares
 app.use(cors());
 app.use(express.json());
 app.use("/api", router);
-db().then(() => console.log("Conectado a la base de datos"));
+
+// Conexión a MongoDB con try/catch
+(async () => {
+  try {
+    await db();
+    console.log("Conectado a la base de datos");
+  } catch (err) {
+    console.error("Error al conectar a MongoDB:", err);
+  }
+})();
+
+// Exporta el handler para Vercel serverless
 export const handler = serverless(app);
-// Este archivo es el punto de entrada de la aplicación Express.
