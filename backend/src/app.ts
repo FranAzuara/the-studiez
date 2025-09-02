@@ -1,8 +1,8 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import router from "./routes/index.js";
-import dbConnect from "./config/mongo.js";
+import router from "./routes/index";
+import dbConnect from "./config/mongo";
 import serverless from "serverless-http";
 
 const app = express();

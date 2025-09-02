@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import * as availabilityService from "../services/calendar.js";
+import * as availabilityService from "../services/calendar";
 
 const getAvailability = async (req: Request, res: Response): Promise<void> => {
   try {
