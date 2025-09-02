@@ -23,4 +23,4 @@ app.use("/api", router);
 })();
 
 // Exporta el handler para Vercel serverless
-export default serverless(app);
+export const handler = serverless(app);
