@@ -14,6 +14,7 @@ const days: Day[] = [
 ];
 
 const hours = Array.from({ length: 14 }, (_, i) => i + 8);
+const API_URL = import.meta.env.VITE_API_URL;
 
 interface WeekCalendarProps {
   isLoggedIn: boolean;
@@ -28,7 +29,7 @@ const WeekCalendar = ({ isLoggedIn }: WeekCalendarProps) => {
   // Cargar disponibilidad y verificar login
   useEffect(() => {
     axios
-      .get("http://localhost:3001/api/calendar")
+      .get(`${API_URL}/calendar`)
       .then((res) => {
         setAvailability(res.data);
         setLoading(false);
@@ -65,7 +66,7 @@ const WeekCalendar = ({ isLoggedIn }: WeekCalendarProps) => {
 
     try {
       const token = localStorage.getItem("token");
-      await axios.put("http://localhost:3001/api/calendar", availability, {
+      await axios.put(`${API_URL}/calendar`, availability, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
