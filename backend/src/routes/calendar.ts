@@ -1,6 +1,9 @@
 import { Router } from "express";
-import { getAvailability, updateAvailability } from "../controllers/calendar";
-import { checkJwt } from "../middleware/session";
+import {
+  getAvailability,
+  updateAvailability,
+} from "../controllers/calendar.js";
+import { checkJwt } from "../middleware/session.js";
 
 const router = Router();
 

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import authRouter from "./auth";
-import calendarRouter from "./calendar";
+import authRouter from "./auth.js";
+import calendarRouter from "./calendar.js";
 
 const router = Router();
 

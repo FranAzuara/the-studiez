@@ -1,8 +1,8 @@
-import { Auth } from "../Interfaces/auth.interface";
-import { User } from "../Interfaces/user.interface";
-import UserModel from "../models/auth.model";
-import { encrypt, verified } from "../utils/bcrypt.handle";
-import { generateToken } from "../utils/jwt.handle";
+import { Auth } from "../Interfaces/auth.interface.js";
+import { User } from "../Interfaces/user.interface.js";
+import UserModel from "../models/auth.model.js";
+import { encrypt, verified } from "../utils/bcrypt.handle.js";
+import { generateToken } from "../utils/jwt.handle.js";
 
 const registerNewUser = async ({ email, password, name }: User) => {
   const checkIs = await UserModel.findOne({ email });
