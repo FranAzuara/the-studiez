@@ -1,6 +1,6 @@
 import { Auth } from "../Interfaces/auth.interface.js";
 import { User } from "../Interfaces/user.interface.js";
-import UserModel from "../models/auth.model";
+import UserModel from "../models/auth.model.js";
 import { encrypt, verified } from "../utils/bcrypt.handle.js";
 import { generateToken } from "../utils/jwt.handle.js";
 

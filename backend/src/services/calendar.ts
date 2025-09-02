@@ -1,4 +1,4 @@
-import AvailabilityModel, { IAvailability } from "../models/calendar.model";
+import AvailabilityModel, { IAvailability } from "../models/calendar.model.js";
 import {
   AvailabilityMap,
   DayAvailability,
