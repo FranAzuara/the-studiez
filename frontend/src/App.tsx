@@ -2,10 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Navbar from "./components/navbar";
-import EventCarousel from "./components/eventCarousel";
-import EditEventModal from "./components/editEventModal";
 import Footer from "./components/footer";
-import { type EventType } from "./types/events";
 import WeekCalendar from "./components/weekCalendar";
 import LoginModal from "./components/loginModal";
 import { motion } from "framer-motion";
@@ -13,9 +10,6 @@ import Prueba from "./components/prueba";
 
 function App() {
   const [modalOpen, setModalOpen] = useState(false);
-  const [currentEvent, setCurrentEvent] = useState<EventType | undefined>(
-    undefined
-  );
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
@@ -31,66 +25,6 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem("token");
     setIsLoggedIn(false);
-  };
-
-  // Abrir modal para crear nuevo evento
-  const handleAdd = () => {
-    setCurrentEvent(undefined);
-    setModalOpen(true);
-  };
-
-  // Abrir modal para editar un evento existente
-  const handleEdit = (evt: EventType) => {
-    setCurrentEvent(evt);
-    setModalOpen(true);
-  };
-
-  // Eliminar evento
-  const handleDelete = async (id?: string) => {
-    if (!id) return;
-    const token = localStorage.getItem("token");
-    try {
-      await fetch(`http://localhost:3001/event/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      window.location.reload();
-    } catch (err) {
-      console.error("Error al eliminar evento:", err);
-    }
-  };
-
-  // Guardar (crear o actualizar)
-  const handleSave = async (evt: EventType) => {
-    const token = localStorage.getItem("token");
-    try {
-      if (evt._id) {
-        // Actualizar
-        await fetch(`http://localhost:3001/api/event/${evt._id}`, {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(evt),
-        });
-      } else {
-        // Crear nuevo
-        await fetch("http://localhost:3001/api/event", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(evt),
-        });
-      }
-      window.location.reload();
-    } catch (err) {
-      console.error("Error al guardar evento:", err);
-    }
   };
 
   // Para la sección contacto
@@ -159,15 +93,6 @@ function App() {
         </section>
 
         <Prueba />
-
-        {/* Eventos */}
-        <section id="eventos" className="p-4 scroll-mt-20">
-          <EventCarousel
-            onAdd={handleAdd}
-            onEdit={handleEdit}
-            onDelete={handleDelete}
-          />
-        </section>
 
         {/* Disponibilidad Semanal */}
         <section
@@ -254,14 +179,6 @@ function App() {
           </div>
         </section>
       </div>
-
-      {/* Modal de edición/creación */}
-      <EditEventModal
-        isOpen={modalOpen}
-        onClose={() => setModalOpen(false)}
-        event={currentEvent}
-        onSave={handleSave}
-      />
 
       <Footer
         isLoggedIn={isLoggedIn}
