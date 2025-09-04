@@ -13,4 +13,6 @@ db().then(() => console.log("Conectado a la base de datos"));
 app.listen(PORT, () => {
   console.log(`Listo por el port ${PORT}`);
 });
+
+export default app;
 // Este archivo es el punto de entrada de la aplicación.
