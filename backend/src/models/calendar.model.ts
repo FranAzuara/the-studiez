@@ -3,7 +3,7 @@ import { Schema, Types, model, Model } from "mongoose";
 import {
   DayAvailability,
   AvailabilityMap,
-} from "../Interfaces/calendar.interface.js";
+} from "../Interfaces/calendar.interface";
 
 const dayAvailabilitySchema = new Schema<DayAvailability>({
   "8-00": { type: Boolean, required: true },

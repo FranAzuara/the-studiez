@@ -1,8 +1,8 @@
-import AvailabilityModel, { IAvailability } from "../models/calendar.model.js";
+import AvailabilityModel, { IAvailability } from "../models/calendar.model";
 import {
   AvailabilityMap,
   DayAvailability,
-} from "../Interfaces/calendar.interface.js";
+} from "../Interfaces/calendar.interface";
 
 // Función para crear un día completo con todas las horas en true
 const createFullDayAvailability = (): DayAvailability => ({

@@ -1,4 +1,4 @@
-import { Auth } from "./auth.interface.js";
+import { Auth } from "./auth.interface";
 
 export interface User extends Auth {
   name: string;

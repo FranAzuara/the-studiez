@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { registerCtrl, loginCtrl } from "../controllers/auth.js";
+import { registerCtrl, loginCtrl } from "../controllers/auth";
 
 const router = Router();
 
 router.post("/register", registerCtrl);
 router.post("/login", loginCtrl);
 
-export default router;
+export { router };
 // Este archivo define las rutas para manejar la autenticación de usuarios en la aplicación.
 // Importa las funciones del controlador de autenticación que manejan la lógica de negocio.
 // Utiliza el enrutador de Express para definir las rutas y asociarlas con las funciones del controlador.

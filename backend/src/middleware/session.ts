@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import { verifyToken } from "../utils/jwt.handle.js";
+import { verifyToken } from "../utils/jwt.handle";
 
 const checkJwt = (req: Request, res: Response, next: NextFunction) => {
   try {
