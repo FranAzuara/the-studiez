@@ -1,26 +1,16 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import router from "../src/routes/index.js";
-import dbConnect from "../src/config/mongo.js";
-import serverless from "serverless-http";
+import router from "../src/routes";
+import dbConnect from "../src/config/mongo";
 
 const app = express();
-
-// Middlewares
+const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 app.use("/api", router);
-
-// Conexión a MongoDB con try/catch
-(async () => {
-  try {
-    await dbConnect();
-    console.log("Conectado a la base de datos");
-  } catch (err) {
-    console.error("Error al conectar a MongoDB:", err);
-  }
-})();
-
-// Exporta el handler para Vercel serverless
-export default serverless(app);
+dbConnect().then(() => console.log("Conectado a la base de datos"));
+app.listen(PORT, () => {
+  console.log(`Listo por el port ${PORT}`);
+});
+// Este archivo es el punto de entrada de la aplicación
