@@ -1,28 +1,20 @@
 import "dotenv/config";
-import mongoose from "mongoose";
+import { connect } from "mongoose";
 
-let cached = (global as any).mongoose;
-
-if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
-}
-
-async function dbConnect(): Promise<typeof mongoose> {
-  if (cached.conn) return cached.conn;
-
-  if (!process.env.DB_URI) throw new Error("DB_URI no definida");
-
-  if (!cached.promise) {
-    cached.promise = mongoose.connect(process.env.DB_URI).then((m) => m);
+async function dbConnect(): Promise<void> {
+  const DB_URI = <string>process.env.DB_URI;
+  try {
+    await connect(DB_URI);
+    console.log("Conectado a MongoDB Atlas");
+  } catch (err) {
+    console.error("Error al conectar a MongoDB:", err);
+    throw err; // Para que Vercel detecte que algo falló
   }
-
-  cached.conn = await cached.promise;
-  return cached.conn;
 }
 
 export default dbConnect;
-
-// Este archivo configura la conexión a la base de datos MongoDB utilizando Mongoose.
-// Utiliza una variable global para almacenar la conexión y evitar múltiples conexiones en entornos serverless.
-// La función dbConnect maneja la lógica de conexión y se asegura de que solo haya una conexión activa.
-// Exporta la función dbConnect para que pueda ser utilizada en otras partes de la aplicación.
+// Este archivo se encarga de conectar la aplicación a la base de datos MongoDB utilizando Mongoose.
+// La conexión se realiza utilizando la URI de la base de datos definida en las variables de entorno.
+// La función `dbConnect` es exportada para ser utilizada en otros módulos de la aplicación.
+// Se utiliza `async/await` para manejar la conexión de manera asíncrona.
+// Si la conexión falla, Mongoose lanzará un error que puede ser manejado en el lugar donde se llame a `dbConnect`.
