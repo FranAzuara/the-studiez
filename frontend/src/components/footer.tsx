@@ -9,7 +9,7 @@ const Footer = ({ isLoggedIn, onLoginClick, onLogout }: FooterProps) => {
     <>
       <footer className="bg-black text-white py-6 px-4 flex flex-col md:flex-row items-center md:items-start md:justify-between">
         <img
-          src="src/TheStudiezL.png"
+          src="/LTheStudiez.png"
           alt="Logo"
           className="w-10 h-auto mb-4 md:mb-0 cursor-pointer"
           onClick={onLoginClick}

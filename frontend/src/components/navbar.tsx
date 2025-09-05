@@ -3,7 +3,7 @@ const Navbar = () => {
     <nav className="bg-black p-4 fixed top-0 right-0 left-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         <div className="flex items-center space-x-4">
-          <img src="src/TheStudiezL.png" className="w-10 h-auto" />
+          <img src="/LTheStudiez.png" className="w-10 h-auto" />
           <div className="text-white text-lg font-bold">THE STUDIEZ</div>
         </div>
         <div className="space-x-4">
