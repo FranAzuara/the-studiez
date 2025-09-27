@@ -8,13 +8,13 @@
   ],
   "rewrites": [
     {
-      "source": "/api/(.*)",
-      "destination": "dist/app.js"
+      "source": "/(.*)",
+      "destination": "/dist/app.js"
     }
   ],
   "headers": [
     {
-      "source": "/api/(.*)",
+      "source": "/(.*)",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         {
