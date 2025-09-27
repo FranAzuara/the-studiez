@@ -8,14 +8,25 @@ const cleanFileName = (fileName: string) => {
   const file = fileName.split(".").shift();
   return file;
 };
-readdirSync(PATH_ROUTES).filter((fileName) => {
-  const cleanName = cleanFileName(fileName);
-  if (cleanName !== "index") {
-    import(`./${cleanName}`).then((moduleRouter) => {
-      router.use(`/${cleanName}`, moduleRouter.router);
-    });
-  }
-});
+
+// Add error handling
+try {
+  readdirSync(PATH_ROUTES).filter((fileName) => {
+    const cleanName = cleanFileName(fileName);
+    if (cleanName !== "index") {
+      import(`./${cleanName}`)
+        .then((moduleRouter) => {
+          router.use(`/${cleanName}`, moduleRouter.router);
+          console.log(`Route /${cleanName} loaded successfully`);
+        })
+        .catch((err) => {
+          console.error(`Error loading route ${cleanName}:`, err);
+        });
+    }
+  });
+} catch (err) {
+  console.error("Error loading routes:", err);
+}
 
 export { router };
 // Este archivo es un CARGADOR DE RUTAS para Express que importa dinámicamente otros módulos de rutas.
