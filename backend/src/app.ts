@@ -17,6 +17,17 @@ app.use(
   })
 );
 app.use(express.json());
+
+app.get("/", (_req, res) => {
+  res.json({
+    message: "The Studiez API is running",
+    endpoints: {
+      calendar: "/api/calendar",
+      auth: "/api/auth",
+    },
+  });
+});
+
 app.use("/api", router);
 db().then(() => console.log("Conectado a la base de datos"));
 app.listen(PORT, () => {
