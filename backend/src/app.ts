@@ -1,26 +1,25 @@
 import express from "express";
 import cors from "cors";
-import "dotenv/config";
 import { router } from "./routes";
-import db from "./config/mongo";
+import dbConnect from "./config/mongo";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
+
 app.use(
   cors({
-    origin:
-      process.env.NODE_ENV === "production"
-        ? ["https://the-studiez-backend.vercel.app"]
-        : ["http://localhost:3001"],
+    origin: ["https://the-studiez.vercel.app"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 app.use(express.json());
 
+// Root route handler
 app.get("/", (_req, res) => {
   res.json({
-    message: "The Studiez API is running",
+    status: "online",
+    message: "The Studiez API",
     endpoints: {
       calendar: "/api/calendar",
       auth: "/api/auth",
@@ -29,10 +28,21 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/api", router);
-db().then(() => console.log("Conectado a la base de datos"));
-app.listen(PORT, () => {
-  console.log(`Listo por el port ${PORT}`);
-});
+
+// Initialize database and start server
+if (process.env.NODE_ENV !== "production") {
+  dbConnect()
+    .then(() => {
+      app.listen(PORT, () => {
+        console.log(`🚀 Server running on http://localhost:${PORT}`);
+        console.log("📦 Database connected");
+      });
+    })
+    .catch((error) => {
+      console.error("❌ Failed to start server:", error);
+      process.exit(1);
+    });
+}
 
 export default app;
 // Este archivo es el punto de entrada de la aplicación.
