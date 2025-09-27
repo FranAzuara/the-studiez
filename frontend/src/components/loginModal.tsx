@@ -13,6 +13,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }: LoginModalProps) => {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const API_URL = import.meta.env.VITE_API_URL;
 
   if (!isOpen) return null;
 
@@ -23,7 +24,7 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }: LoginModalProps) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/auth/login",
+        `${API_URL}/auth/login`,
         { email, password },
         { headers: { "Content-Type": "application/json" } }
       );
