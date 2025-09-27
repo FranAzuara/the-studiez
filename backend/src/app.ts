@@ -8,7 +8,10 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 app.use(
   cors({
-    origin: ["http://the-studiez-backend.vercel.app", "http://localhost:3001"],
+    origin:
+      process.env.NODE_ENV === "production"
+        ? ["http://the-studiez-backend.vercel.app"]
+        : ["http://localhost:3001"],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
