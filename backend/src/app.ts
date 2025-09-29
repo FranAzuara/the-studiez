@@ -8,7 +8,10 @@ const PORT = process.env.PORT || 3001;
 
 app.use(
   cors({
-    origin: ["https://the-studiez.vercel.app"],
+    origin: [
+      `http://localhost:${PORT}`, // frontend local
+      "https://the-studiez.vercel.app", // frontend en producción
+    ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
@@ -30,19 +33,20 @@ app.get("/", (_req, res) => {
 app.use("/", router);
 
 // Initialize database and start server
-if (process.env.NODE_ENV !== "production") {
-  dbConnect()
-    .then(() => {
+dbConnect()
+  .then(() => {
+    console.log("📦 Database connected");
+
+    // Solo escuchar en local (no en Vercel)
+    if (process.env.NODE_ENV !== "production") {
       app.listen(PORT, () => {
         console.log(`🚀 Server running on http://localhost:${PORT}`);
-        console.log("📦 Database connected");
       });
-    })
-    .catch((error) => {
-      console.error("❌ Failed to start server:", error);
-      process.exit(1);
-    });
-}
+    }
+  })
+  .catch((error) => {
+    console.error("❌ Failed to connect to database:", error);
+  });
 
 export default app;
 // Este archivo es el punto de entrada de la aplicación.
