@@ -22,6 +22,8 @@ const LoginModal = ({ isOpen, onClose, onLoginSuccess }: LoginModalProps) => {
     setError("");
     setLoading(true);
 
+    console.log("Login URL:", `${API_URL}/auth/login`);
+
     try {
       const response = await axios.post(
         `${API_URL}/auth/login`,
