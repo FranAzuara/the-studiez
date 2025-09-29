@@ -21,13 +21,13 @@ app.get("/", (_req, res) => {
     status: "online",
     message: "The Studiez API",
     endpoints: {
-      calendar: "/api/calendar",
-      auth: "/api/auth",
+      calendar: "/calendar",
+      auth: "/auth",
     },
   });
 });
 
-app.use("/api", router);
+app.use("/", router);
 
 // Initialize database and start server
 if (process.env.NODE_ENV !== "production") {

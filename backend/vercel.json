@@ -2,19 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "dist/app.js",
+      "src": "src/app.ts",
       "use": "@vercel/node"
     }
   ],
-  "rewrites": [
+  "routes": [
     {
-      "source": "/(.*)",
-      "destination": "/dist/app.js"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
+      "src": "/(.*)",
+      "dest": "src/app.ts",
       "headers": [
         { "key": "Access-Control-Allow-Credentials", "value": "true" },
         {
