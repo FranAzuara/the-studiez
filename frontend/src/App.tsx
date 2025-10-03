@@ -28,11 +28,21 @@ function App() {
   };
 
   // Para la sección contacto
+  // Detecta si es móvil
+  const isMobile = () => {
+    if (typeof navigator === "undefined") return false; // SSR safe
+    return /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  };
+
   const subject = encodeURIComponent("Reserva de espacio THE STUDIEZ");
   const body = encodeURIComponent(
     "Hola buenos días, me gustaría reservar su refugio el [DIA] de [HORA COMIENZO] a [HORA FINAL]..."
   );
-  const gmailUrl = `mailto:the.studiez.bcn@gmail.com?subject=${subject}&body=${body}`;
+
+  const desktopUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=the.studiez.bcn@gmail.com&su=${subject}&body=${body}`;
+  const mobileUrl = `mailto:the.studiez.bcn@gmail.com?subject=${subject}&body=${body}`;
+
+  const gmailUrl = isMobile() ? mobileUrl : desktopUrl;
 
   return (
     <>
