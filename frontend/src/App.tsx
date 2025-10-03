@@ -32,7 +32,7 @@ function App() {
   const body = encodeURIComponent(
     "Hola buenos días, me gustaría reservar su refugio el [DIA] de [HORA COMIENZO] a [HORA FINAL]..."
   );
-  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=the.studiez.bcn@gmail.com&su=${subject}&body=${body}`;
+  const gmailUrl = `mailto:the.studiez.bcn@gmail.com?subject=${subject}&body=${body}`;
 
   return (
     <>
