@@ -123,8 +123,8 @@ function App() {
           <div className="flex flex-col items-center gap-4">
             <div className="bg-white rounded-lg drop-shadow-lg p-4 w-full md:w-2/3 text-center">
               <strong>
-                ¿Buscas el lugar perfecto para dar tus clases de baile, ensayar
-                con tu grupo o preparar una coreografía?
+                ¿Buscas el lugar perfecto para dar tus clases de baile, pilates,
+                yoga o preparar un evento?
               </strong>
               <p className="mt-2">
                 Nuestra sala está lista para recibirte con todo lo que
