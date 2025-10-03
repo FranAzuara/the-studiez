@@ -22,27 +22,21 @@ interface Slide {
 const slides: Slide[] = [
   {
     title: "El Refugio",
-    subtitle: "Superficie",
-    text: "Nuestra sala, con sus 100 m² de amplitud, es mucho más que cuatro paredes: es un lienzo en blanco listo para convertirse en lo que imagines.\n\nLas paredes blancas multiplican la luz y transmiten energía; el suelo de parquet recibe cada paso con calidez.\n\nPara tu comodidad en cualquier época del año, contamos con aire acondicionado. Además, disponemos de dos baños, uno de ellos adaptado para personas con movilidad reducida.",
-    image: "https://swiperjs.com/demos/images/nature-1.jpg",
-  },
-  {
-    title: "El Refugio",
-    subtitle: "Musica",
-    text: "La música cobra vida gracias a un equipo profesional con cuatro altavoces y un subwoofer que llenan la sala de sonido envolvente",
-    image: "https://swiperjs.com/demos/images/nature-2.jpg",
+    subtitle: "Nuestra Sala",
+    text: "·100 m² de amplitud\n\n·Paredes blancas y suelo de parquet\n\n·Aire acondicionado\n\n·Equipo de sonido profesional con cuatro altavoces y un subwoofer\n\n·Dos baños, uno de ellos adaptado para personas con movilidad reducida",
+    image: "/Superficie.jpeg",
   },
   {
     title: "El Refugio",
     subtitle: "Material",
     text: "A tu disposición también tienes focos de grabación, iluminación LED y una máquina de humo que añade magia a tus sesiones.",
-    image: "https://swiperjs.com/demos/images/nature-3.jpg",
+    image: "/LED.jpeg",
   },
   {
     title: "El Refugio",
     subtitle: "Almacenamiento",
     text: "Contamos con una práctica zona de almacenaje junto a la entrada, pensada para que puedas dejar tus pertenencias de forma segura y ordenada durante tu clase. Así, podrás moverte con total comodidad y concentrarte solo en disfrutar de la actividad.",
-    image: "https://swiperjs.com/demos/images/nature-3.jpg",
+    image: "Almacenamiento.jpeg",
   },
 ];
 
