@@ -77,7 +77,7 @@ const Prueba: React.FC = () => {
       </Swiper>
 
       <motion.div
-        className="py-8 px-6 bg-white/90 rounded-lg shadow-lg p-4 mx-4 m-4 md:mx-auto scroll-mt-20"
+        className="py-8 px-6 bg-white/90 rounded-lg shadow-lg p-4 mx-0 m-4 md:mx-auto scroll-mt-20"
         initial={{ opacity: 0, y: 100 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.4 }}
