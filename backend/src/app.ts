@@ -5,7 +5,7 @@ import dbConnect from "./config/mongo";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-const FRONTEND_PORT = process.env.FRONTEND_PORT || 8081;
+const FRONTEND_PORT = process.env.FRONTEND_PORT || 8080;
 
 app.use(
   cors({
