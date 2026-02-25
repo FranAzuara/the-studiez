@@ -90,18 +90,21 @@ const Prueba: React.FC = () => {
               icon: FiCamera,
               title: "Calidad profesional",
               text: "Un espacio cuidado al detalle, equipado con materiales y tecnología de alto nivel.",
+              video: "/video-studiez-2.mp4",
             },
             {
               icon: FiMusic,
               title: "Ambiente acogedor",
               text: "Un lugar pensado para que cualquiera que cruce la puerta se sienta inspirado.",
+              video: "/video-studiez-3.mp4",
             },
             {
               icon: FiZap,
               title: "Impulso creativo",
               text: "Facilitamos que cada proyecto crezca, adaptándonos a tus necesidades.",
+              video: "/video-studiez-1.mp4",
             },
-          ].map(({ icon: Icon, title, text }, idx) => (
+          ].map(({ icon: Icon, title, text, video }, idx) => (
             <motion.div
               key={idx}
               whileHover={{ scale: 1.05, rotate: 1 }}
@@ -110,6 +113,14 @@ const Prueba: React.FC = () => {
               <Icon className="w-12 h-12 text-green-600 mb-4" />
               <strong className="text-lg">{title}</strong>
               <p className="text-gray-600 mt-2">{text}</p>
+              <video
+                className="w-auto h-150 rounded-lg md:h-auto mt-4"
+                src={video}
+                autoPlay
+                loop
+                muted
+                playsInline
+              ></video>
             </motion.div>
           ))}
         </div>

@@ -5,16 +5,17 @@ import dbConnect from "./config/mongo";
 
 const app = express();
 const PORT = process.env.PORT || 3001;
+const FRONTEND_PORT = process.env.FRONTEND_PORT || 8081;
 
 app.use(
   cors({
     origin: [
-      `http://localhost:${PORT}`, // frontend local
+      `http://localhost:${FRONTEND_PORT}`, // frontend local
       "https://the-studiez.vercel.app", // frontend en producción
     ],
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
-  })
+  }),
 );
 app.use(express.json());
 
