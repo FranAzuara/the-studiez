@@ -1,22 +1,27 @@
 import "dotenv/config";
-import { connect } from "mongoose";
-
-let isConnected = false;
+import { connect, connection } from "mongoose";
 
 async function dbConnect(): Promise<void> {
   const DB_URI = <string>process.env.DB_URI;
 
   // Si ya estamos conectados, salimos de la función inmediatamente
-  if (isConnected) {
+  if (connection.readyState === 1) {
     console.log("=> Usando conexión existente a MongoDB");
     return;
   }
 
+  if (connection.readyState === 2) {
+    console.log("=> Conexión en curso, esperando...");
+    await new Promise((resolve) => {
+      connection.once("connected", resolve);
+    });
+    return;
+  }
+
   try {
-    const db = await connect(DB_URI, {
+    await connect(DB_URI, {
       bufferCommands: false,
     });
-    isConnected = db.connections[0].readyState === 1; //
     console.log("Conectado a MongoDB Atlas");
   } catch (err) {
     console.error("Error al conectar a MongoDB:", err);
