@@ -3,6 +3,7 @@ import {
   AvailabilityMap,
   DayAvailability,
 } from "../Interfaces/calendar.interface";
+import dbConnect from "../config/mongo";
 
 // Función para crear un día completo con todas las horas en true
 const createFullDayAvailability = (): DayAvailability => ({
@@ -49,20 +50,27 @@ const createFullWeekAvailability = (): AvailabilityMap => ({
 });
 
 export const getAvailability = async (): Promise<IAvailability | null> => {
-  let availability = await AvailabilityModel.findOne().exec();
+  await dbConnect();
 
-  if (!availability) {
-    // Si no existe, creamos uno nuevo con disponibilidad completa y lo guardamos
-    const fullWeek = createFullWeekAvailability();
-    availability = new AvailabilityModel(fullWeek);
-    await availability.save();
+  try {
+    let availability = await AvailabilityModel.findOne().exec();
+
+    if (!availability) {
+      // Si no existe, creamos uno nuevo con disponibilidad completa y lo guardamos
+      const fullWeek = createFullWeekAvailability();
+      availability = new AvailabilityModel(fullWeek);
+      await availability.save();
+    }
+
+    return availability;
+  } catch (error) {
+    console.error("Error en getAvailability:", error);
+    throw error;
   }
-
-  return availability;
 };
 
 export const updateAvailability = async (
-  slots: AvailabilityMap
+  slots: AvailabilityMap,
 ): Promise<IAvailability | null> => {
   const updated = await AvailabilityModel.findOneAndUpdate({}, slots, {
     new: true,
