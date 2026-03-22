@@ -15,6 +15,9 @@ const days: Day[] = [
 
 const hours = Array.from({ length: 14 }, (_, i) => i + 8);
 const API_URL = import.meta.env.VITE_API_URL;
+const CACHE_KEY = "calendar_cache";
+const TIMESTAMP_KEY = "calendar_timestamp";
+const EXPIRATION_TIME = 172800000; // 48 hours in ms
 
 interface WeekCalendarProps {
   isLoggedIn: boolean;
@@ -28,13 +31,49 @@ const WeekCalendar = ({ isLoggedIn }: WeekCalendarProps) => {
 
   // Cargar disponibilidad y verificar login
   useEffect(() => {
+    let cachedData: string | null = null;
+    let cachedTimestamp: string | null = null;
+    const now = Date.now();
+
+    try {
+      cachedData = localStorage.getItem(CACHE_KEY);
+      cachedTimestamp = localStorage.getItem(TIMESTAMP_KEY);
+
+      if (cachedData && cachedTimestamp) {
+        const isExpired =
+          now - parseInt(cachedTimestamp, 10) > EXPIRATION_TIME;
+        if (!isExpired) {
+          setAvailability(JSON.parse(cachedData));
+          setLoading(false);
+          return;
+        }
+      }
+    } catch (e) {
+      console.error("Error reading from localStorage", e);
+    }
+
     axios
       .get(`${API_URL}/calendar`)
       .then((res) => {
         setAvailability(res.data);
+        try {
+          localStorage.setItem(CACHE_KEY, JSON.stringify(res.data));
+          localStorage.setItem(TIMESTAMP_KEY, now.toString());
+        } catch (e) {
+          console.error("Error saving to localStorage", e);
+        }
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        if (cachedData) {
+          try {
+            setAvailability(JSON.parse(cachedData));
+          } catch (e) {
+            console.error("Error parsing cached data", e);
+          }
+        }
+        setLoading(false);
+      });
   }, []);
 
   // Toggle disponibilidad al hacer clic
